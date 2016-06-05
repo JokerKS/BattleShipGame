@@ -142,7 +142,6 @@ namespace BattleShipGame.Data
                         // numUpDown
                         //
                         numUpDown = new NumericUpDown();
-                        //numUpDown.Dock = DockStyle.Fill;
                         numUpDown.Maximum = 20;
                         numUpDown.Minimum = 8;
                         numUpDown.Value = 10;
@@ -1421,6 +1420,8 @@ namespace BattleShipGame.Data
                             act1.Result_OF_Shot(x, y, course);
                             DrawMiss(formGraphics2, x, y, true);
                             pictureBox2.Image = btm2;
+                            number_of_moves++;
+                            label.Text = "Ilość ruchów: " + number_of_moves;
                         }
                         else if (course == -1 || course == -2)
                         {
@@ -1429,6 +1430,8 @@ namespace BattleShipGame.Data
                         }
                         if (course == -2 && act3.AllKilled())
                         {
+                            number_of_moves++;
+                            label.Text = "Ilość ruchów: " + number_of_moves;
                             status_game = GameStatus.Finish;
                             CreateView();
                         }
