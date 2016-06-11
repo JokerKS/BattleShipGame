@@ -1,7 +1,9 @@
 ﻿using BattleShipGame.Date;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -129,6 +131,7 @@ namespace BattleShipGame.Data
             // 
             powrótDoMenuToolStripMenuItem.Size = new Size(163, 22);
             powrótDoMenuToolStripMenuItem.Text = "Powrót do menu";
+            powrótDoMenuToolStripMenuItem.Click += OpenMainMenu_Click;
             // 
             // toolStripSeparator1
             // 
@@ -166,6 +169,18 @@ namespace BattleShipGame.Data
             SoundOnToolStripMenuItem.Click += Music_Click;
 
             form.Controls.Add(menuStrip1);
+        }
+
+        private void OpenMainMenu_Click(object sender, EventArgs e)
+        {
+            ClearAllComponents(form);
+            status_game = (byte)GameStatus.Menu;
+            act1 = null; act2 = null; act3 = null;
+            who_goes = true;
+            number_of_moves = 0;
+            mode = 0;
+
+            CreateView();
         }
 
         #region Основна функція програми, яка в залежності від статусу виконує задані їй дії
@@ -780,7 +795,9 @@ namespace BattleShipGame.Data
             {
                 btn1.Click -= new EventHandler(NewGame_Click);
                 btn2.Click -= new EventHandler(CompatibleGame_Click);
+                btn3.Click -= new EventHandler(Zasady_Click);
                 btn4.Click -= new EventHandler(Close_Click);
+                btn6.Click -= new EventHandler(OProgramie_Click);
                 btn7.Click -= new EventHandler(Music_Click);
                 btn1.MouseEnter -= new EventHandler(btn_MouseEnter);
                 btn2.MouseEnter -= new EventHandler(btn_MouseEnter);
@@ -796,22 +813,9 @@ namespace BattleShipGame.Data
                 btn5.Enter -= new EventHandler(btn_MouseEnter);
                 btn6.Enter -= new EventHandler(btn_MouseEnter);
                 btn7.Enter -= new EventHandler(btn_MouseEnter);
-                panel1.Controls.Remove(btn1);
-                panel1.Controls.Remove(btn2);
-                panel1.Controls.Remove(btn3);
-                panel1.Controls.Remove(btn4);
-                panel1.Controls.Remove(btn5);
-                panel1.Controls.Remove(btn6);
-                panel1.Controls.Remove(btn7);
-                panel1.Controls.Remove(pictureBox1);
-                btn1.Dispose(); btn2.Dispose(); btn3.Dispose(); btn4.Dispose();
-                btn5.Dispose(); btn6.Dispose(); btn7.Dispose();
-                pictureBox1.Dispose();
-                tableLayoutPanel1.Controls.Remove(panel1);
-                panel1.Dispose();
                 tableLayoutPanel1.Paint -= new PaintEventHandler(tableLayoutPanel1_Paint);
-                form.Controls.Remove(tableLayoutPanel1);
-                tableLayoutPanel1.Dispose();
+
+                ClearAllComponents(form);
             }
 
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -1020,7 +1024,9 @@ namespace BattleShipGame.Data
             {
                 btn1.Click -= new EventHandler(NewGame_Click);
                 btn2.Click -= new EventHandler(CompatibleGame_Click);
+                btn3.Click -= new EventHandler(Zasady_Click);
                 btn4.Click -= new EventHandler(Close_Click);
+                btn6.Click -= new EventHandler(OProgramie_Click);
                 btn7.Click -= new EventHandler(Music_Click);
                 btn1.MouseEnter -= new EventHandler(btn_MouseEnter);
                 btn2.MouseEnter -= new EventHandler(btn_MouseEnter);
@@ -1036,22 +1042,9 @@ namespace BattleShipGame.Data
                 btn5.Enter -= new EventHandler(btn_MouseEnter);
                 btn6.Enter -= new EventHandler(btn_MouseEnter);
                 btn7.Enter -= new EventHandler(btn_MouseEnter);
-                panel1.Controls.Remove(btn1);
-                panel1.Controls.Remove(btn2);
-                panel1.Controls.Remove(btn3);
-                panel1.Controls.Remove(btn4);
-                panel1.Controls.Remove(btn5);
-                panel1.Controls.Remove(btn6);
-                panel1.Controls.Remove(btn7);
-                panel1.Controls.Remove(pictureBox1);
-                btn1.Dispose(); btn2.Dispose(); btn3.Dispose(); btn4.Dispose();
-                btn5.Dispose(); btn6.Dispose(); btn7.Dispose();
-                pictureBox1.Dispose();
-                tableLayoutPanel1.Controls.Remove(panel1);
-                panel1.Dispose();
                 tableLayoutPanel1.Paint -= new PaintEventHandler(tableLayoutPanel1_Paint);
-                form.Controls.Remove(tableLayoutPanel1);
-                tableLayoutPanel1.Dispose();
+
+                ClearAllComponents(form);
             }
             CreateView();
         }
@@ -1152,21 +1145,11 @@ namespace BattleShipGame.Data
             {
                 pictureBox1.MouseDown -= new MouseEventHandler(picBox_MouseDown);
                 btn1.Click -= new EventHandler(Random_Click);
-                tableLayoutPanel1.Controls.Remove(flowpanel);
-                flowpanel.Dispose();
-                form.Controls.Remove(tableLayoutPanel1);
-                tableLayoutPanel1.Dispose();
-                form.Controls.Remove(numUpDown);
-                numUpDown.Dispose();
-                form.Controls.Remove(label);
-                label.Dispose();
                 btn1.Click -= new EventHandler(Random_Click);
                 btn2.Click -= new EventHandler(Clear_Click);
                 btn3.Click -= new EventHandler(Start_Click);
                 btn4.Click -= new EventHandler(Back_Click);
-                form.Controls.Remove(btn2);
-                form.Controls.Remove(btn3);
-                btn2.Dispose(); btn3.Dispose();
+                ClearAllComponents(form);
             }
             act2.AutoGenerateShip();
             CreateView();
@@ -1608,6 +1591,31 @@ namespace BattleShipGame.Data
                     cell_y = (x - size_cell * 2) / size_cell;
                     cell_x = (y - size_cell * 2) / size_cell;
                 }
+            }
+        }
+        #endregion
+
+        #region Функція для очистки всіх компонентів з форми
+        private void ClearAllComponents(Control c)
+        {
+            for (int i = c.Controls.Count-1; i > 0; i--)
+            {
+                if (c.Controls[i] is TableLayoutPanel || c.Controls[i] is FlowLayoutPanel || c.Controls[i] is Panel)
+                {
+                    ClearAllComponents(c.Controls[i]);
+                }
+                else if (!(c.Controls[i] is MenuStrip)) 
+                {
+                    Control tmp = c.Controls[i];
+                    c.Controls.Remove(c.Controls[i]);
+                    tmp.Dispose();
+                    Thread.Sleep(1000);
+                }
+            }
+            if (!(c is Form))
+            {
+                c.Parent.Controls.Remove(c);
+                c.Dispose();
             }
         }
         #endregion
