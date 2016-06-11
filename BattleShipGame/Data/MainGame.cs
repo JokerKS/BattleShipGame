@@ -85,7 +85,7 @@ namespace BattleShipGame.Data
         public MainGame(MainForm f)
         {
             form = f;
-            form.MinimumSize = new Size(600, 450);
+            form.MinimumSize = new Size(630, 450);
             form.Size = form.MinimumSize;
 
             
@@ -98,6 +98,7 @@ namespace BattleShipGame.Data
         }
         #endregion
 
+        #region Створення верхнього меню
         private void CreateTopMenu()
         {
             menuStrip1 = new MenuStrip();
@@ -182,6 +183,7 @@ namespace BattleShipGame.Data
 
             CreateView();
         }
+        #endregion
 
         #region Основна функція програми, яка в залежності від статусу виконує задані їй дії
         private void CreateView()
@@ -212,9 +214,9 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                         tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
                         tableLayoutPanel1.RowCount = 3;
-                        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-                        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-                        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+                        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
+                        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+                        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
                         tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
                         // 
                         // pictureBox1
@@ -246,7 +248,9 @@ namespace BattleShipGame.Data
                         numUpDown.Minimum = 8;
                         numUpDown.Value = 10;
                         numUpDown.ReadOnly = true;
-                        numUpDown.Anchor = AnchorStyles.Left;
+                        numUpDown.Location = new Point(0,30);
+                        numUpDown.Font = new Font("Century Gothic", 16, FontStyle.Bold, GraphicsUnit.Point, 204);
+                        numUpDown.Anchor = ((AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left));
                         tableLayoutPanel1.Controls.Add(numUpDown, 3, 0);
 
                         size_board = (byte)numUpDown.Value;
@@ -261,11 +265,12 @@ namespace BattleShipGame.Data
                         //
                         label = new Label();
                         label.Text = "Wybierz rozmiar pola: ";
-                        label.Dock = DockStyle.Fill;
-                        label.TextAlign = ContentAlignment.MiddleRight;
+                        label.Location = new Point(0, 30);
+                        label.Anchor = ((AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Right));
                         label.BackColor = Color.Transparent;
                         label.AutoSize = true;
-                        label.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+                        label.Margin = new Padding(0,0,3,8);
+                        label.Font = new Font("Century Gothic", 18, FontStyle.Bold, GraphicsUnit.Point, 204);
                         tableLayoutPanel1.Controls.Add(label,1,0);
 
                         flowpanel = new FlowLayoutPanel();
@@ -307,8 +312,6 @@ namespace BattleShipGame.Data
                     tableLayoutPanel1.RowStyles[1].Height = pictureBox1.Width;
 
                     size_cell = pictureBox1.Width / (size_board + 3);
-
-                    label.Font = numUpDown.Font = new Font("Century Gothic", tableLayoutPanel1.RowStyles[0].Height/2, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
 
                     btm1 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                     formGraphics1 = Graphics.FromImage(btm1);
@@ -425,7 +428,7 @@ namespace BattleShipGame.Data
                     tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
                     tableLayoutPanel1.RowCount = 2;
                     tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-                    tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+                    tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
                     tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
 
                     tableLayoutPanel3 = new TableLayoutPanel();
@@ -436,13 +439,13 @@ namespace BattleShipGame.Data
                     tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
                     tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     tableLayoutPanel3.RowCount = 2;
-                    tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+                    tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
                     tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
                     tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 0);
 
                     tableLayoutPanel2 = new TableLayoutPanel();
                     tableLayoutPanel2.Dock = DockStyle.Fill;
-                    tableLayoutPanel3.BackColor = Color.White;
+                    tableLayoutPanel2.BackColor = Color.White;
                     tableLayoutPanel2.ColumnCount = 3;
                     tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
@@ -484,7 +487,7 @@ namespace BattleShipGame.Data
                     //
                     label2 = new Label();
                     label2.Dock = DockStyle.Fill;
-                    label2.TextAlign = ContentAlignment.MiddleCenter;
+                    label2.TextAlign = ContentAlignment.BottomCenter;
                     label2.AutoSize = true;
                     label2.BackColor = Color.Transparent;
                     label2.Font = new Font("Century Gothic", 16, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
@@ -495,7 +498,7 @@ namespace BattleShipGame.Data
                     //
                     label3 = new Label();
                     label3.Dock = DockStyle.Fill;
-                    label3.TextAlign = ContentAlignment.MiddleCenter;
+                    label3.TextAlign = ContentAlignment.BottomCenter;
                     label3.AutoSize = true;
                     label3.BackColor = Color.Transparent;
                     label3.Font = new Font("Century Gothic", 16, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
@@ -1517,10 +1520,16 @@ namespace BattleShipGame.Data
         }
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
-            if(status_game==GameStatus.Game)
+            if (status_game == GameStatus.Game)
             {
-                double form_size = pictureBox2.Width + 25 
+                double form_size = pictureBox2.Width + 25
                     + tableLayoutPanel3.RowStyles[0].Height + tableLayoutPanel1.RowStyles[1].Height;
+                if (form.Size.Height < form_size)
+                    form.Size = new Size(form.Width, (int)form_size);
+            }
+            else if (status_game == GameStatus.Preparation && mode==1)
+            {
+                double form_size = tableLayoutPanel1.RowStyles[0].Height + tableLayoutPanel1.RowStyles[1].Height+100;
                 if (form.Size.Height < form_size)
                     form.Size = new Size(form.Width, (int)form_size);
             }
@@ -1558,7 +1567,6 @@ namespace BattleShipGame.Data
                     Control tmp = c.Controls[i];
                     c.Controls.Remove(c.Controls[i]);
                     tmp.Dispose();
-                    Thread.Sleep(1000);
                 }
             }
             if (!(c is Form))
