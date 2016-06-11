@@ -22,6 +22,16 @@ namespace BattleShipGame.Data
         private FlowLayoutPanel flowpanel;
         ToolTip t;
 
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem mainToolStripMenuItem;
+        private ToolStripMenuItem powrótDoMenuToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem CloseToolStripMenuItem;
+        private ToolStripMenuItem OProgramieToolStripMenuItem;
+        private ToolStripMenuItem SoundToolStripMenuItem;
+        private ToolStripMenuItem SoundOffToolStripMenuItem;
+        private ToolStripMenuItem SoundOnToolStripMenuItem;
+
         private byte page;
 
         //для звуків
@@ -73,15 +83,90 @@ namespace BattleShipGame.Data
         public MainGame(MainForm f)
         {
             form = f;
-            form.MinimumSize = new Size(600, 400);
+            form.MinimumSize = new Size(600, 450);
             form.Size = form.MinimumSize;
+
+            
 
             who_goes = true;
 
             status_game = GameStatus.Menu;
+            CreateTopMenu();
             CreateView();
         }
         #endregion
+
+        private void CreateTopMenu()
+        {
+            menuStrip1 = new MenuStrip();
+            mainToolStripMenuItem = new ToolStripMenuItem();
+            powrótDoMenuToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            CloseToolStripMenuItem = new ToolStripMenuItem();
+            OProgramieToolStripMenuItem = new ToolStripMenuItem();
+            SoundToolStripMenuItem = new ToolStripMenuItem();
+            SoundOffToolStripMenuItem = new ToolStripMenuItem();
+            SoundOnToolStripMenuItem = new ToolStripMenuItem();
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] {
+                mainToolStripMenuItem, SoundToolStripMenuItem, OProgramieToolStripMenuItem});
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(484, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // mainToolStripMenuItem
+            // 
+            mainToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
+            powrótDoMenuToolStripMenuItem, toolStripSeparator1, CloseToolStripMenuItem});
+            mainToolStripMenuItem.Size = new Size(46, 20);
+            mainToolStripMenuItem.Text = "Main";
+            // 
+            // powrótDoMenuToolStripMenuItem
+            // 
+            powrótDoMenuToolStripMenuItem.Size = new Size(163, 22);
+            powrótDoMenuToolStripMenuItem.Text = "Powrót do menu";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Size = new Size(160, 6);
+            // 
+            // CloseToolStripMenuItem
+            // 
+            CloseToolStripMenuItem.Size = new Size(163, 22);
+            CloseToolStripMenuItem.Click += Close_Click;
+            CloseToolStripMenuItem.Text = "Zamknij";
+            // 
+            // OProgramieToolStripMenuItem
+            //
+            OProgramieToolStripMenuItem.Size = new Size(46, 20);
+            OProgramieToolStripMenuItem.Click += OProgramie_Click;
+            OProgramieToolStripMenuItem.Text = "O programie";
+            // 
+            // SoundToolStripMenuItem
+            //
+            SoundToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
+                SoundOffToolStripMenuItem, SoundOnToolStripMenuItem});
+            SoundToolStripMenuItem.Size = new Size(46, 20);
+            SoundToolStripMenuItem.Text = "Dźwięk";
+            // 
+            // SoundOffToolStripMenuItem
+            //
+            SoundOffToolStripMenuItem.Size = new Size(46, 20);
+            SoundOffToolStripMenuItem.Text = "Tak";
+            SoundOffToolStripMenuItem.Click += Music_Click;
+            // 
+            // SoundOnToolStripMenuItem
+            //
+            SoundOnToolStripMenuItem.Size = new Size(46, 20);
+            SoundOnToolStripMenuItem.Text = "Nie";
+            SoundOnToolStripMenuItem.Click += Music_Click;
+
+            form.Controls.Add(menuStrip1);
+        }
 
         #region Основна функція програми, яка в залежності від статусу виконує задані їй дії
         private void CreateView()
@@ -488,6 +573,7 @@ namespace BattleShipGame.Data
                 status_game = (byte)GameStatus.Menu;
                 act1 = null; act2 = null; act3 = null;
                 who_goes = true;
+                number_of_moves = 0;
                 mode = 0;
 
                 if (form.Controls.Contains(tableLayoutPanel1))
@@ -678,6 +764,7 @@ namespace BattleShipGame.Data
 
                 form.Controls.Add(tableLayoutPanel1);
             }
+            SoundClickReaction();
         }
 
         private void OProgramie_Click(object sender, EventArgs e)
@@ -873,6 +960,7 @@ namespace BattleShipGame.Data
         }
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
+            if (e.ClipRectangle!=new Rectangle(0,0,0,0))
             using (LinearGradientBrush brush = new LinearGradientBrush
                 (e.ClipRectangle, Color.White, Color.Blue, 120F))
             {
@@ -882,15 +970,24 @@ namespace BattleShipGame.Data
         private void Music_Click(object sender, EventArgs e)
         {
             musicFlag = !musicFlag;
+            SoundClickReaction();
+        }
+
+        private void SoundClickReaction()
+        {
             if (musicFlag)
             {
-                (sender as Button).BackgroundImage = Properties.Resources.volume_max;
-                t.SetToolTip(sender as Button, "Wyłączyć dźwięk");
+                btn7.BackgroundImage = Properties.Resources.volume_max;
+                SoundOffToolStripMenuItem.Checked = true;
+                SoundOnToolStripMenuItem.Checked = false;
+                t.SetToolTip(btn7, "Wyłączyć dźwięk");
             }
             else
             {
-                (sender as Button).BackgroundImage = Properties.Resources.volume_min;
-                t.SetToolTip(sender as Button, "Włączyć dźwięk");
+                btn7.BackgroundImage = Properties.Resources.volume_min;
+                SoundOffToolStripMenuItem.Checked = false;
+                SoundOnToolStripMenuItem.Checked = true;
+                t.SetToolTip(btn7, "Włączyć dźwięk");
             }
         }
         private void NewGame_Click(object sender, EventArgs e)
