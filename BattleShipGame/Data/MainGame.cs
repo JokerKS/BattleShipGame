@@ -300,15 +300,6 @@ namespace BattleShipGame.Data
                         btn3.Size = new Size(100, 45);
                         flowpanel.Controls.Add(btn3);
 
-                        btn4 = new Button();
-                        btn4.Text = "<";
-                        btn4.Anchor = AnchorStyles.Right;
-                        btn4.BringToFront();
-                        btn4.Click += new EventHandler(Back_Click);
-                        btn4.Cursor = Cursors.Hand;
-                        btn4.Size = new Size(30, 45);
-                        flowpanel.Controls.Add(btn4);
-
                         btn1.Font = btn2.Font = btn3.Font = btn4.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
 
                         form.Controls.Add(tableLayoutPanel1);
@@ -897,19 +888,8 @@ namespace BattleShipGame.Data
                 btn1.Click -= new EventHandler(Nazad_Click);
                 btn2.Click -= new EventHandler(Back2_Click);
                 btn3.Click -= new EventHandler(Vpered_Click);
-                panel1.Controls.Remove(pictureBox1);
-                tableLayoutPanel2.Controls.Remove(btn1);
-                tableLayoutPanel2.Controls.Remove(btn2);
-                tableLayoutPanel2.Controls.Remove(btn3);
-                btn1.Dispose(); btn2.Dispose(); btn3.Dispose(); 
-                pictureBox1.Dispose();
-                tableLayoutPanel1.Controls.Remove(panel1);
-                panel1.Dispose();
-                tableLayoutPanel1.Controls.Remove(tableLayoutPanel1);
-                form.Controls.Remove(tableLayoutPanel1);
-                tableLayoutPanel1.Dispose();
+                ClearAllComponents(form);
             }
-            page = 0;
             CreateView();
         }
 
@@ -1084,36 +1064,6 @@ namespace BattleShipGame.Data
             pictureBox2.Image = btm2;
         }
 
-        private void Back_Click(object sender, EventArgs e)
-        {
-            status_game = (byte)GameStatus.Menu;
-            act1 = null; act2 = null; act3 = null;
-            who_goes = true;
-            mode = 0;
-
-            if (form.Controls.Contains(tableLayoutPanel1))
-            {
-                pictureBox1.MouseDown -= new MouseEventHandler(picBox_MouseDown);
-                btn1.Click -= new EventHandler(Random_Click);
-                tableLayoutPanel1.Controls.Remove(flowpanel);
-                flowpanel.Dispose();
-                form.Controls.Remove(tableLayoutPanel1);
-                tableLayoutPanel1.Dispose();
-                form.Controls.Remove(numUpDown);
-                numUpDown.Dispose();
-                form.Controls.Remove(label);
-                label.Dispose();
-                btn1.Click -= new EventHandler(Random_Click);
-                btn2.Click -= new EventHandler(Clear_Click);
-                btn3.Click -= new EventHandler(Start_Click);
-                btn4.Click -= new EventHandler(Back_Click);
-                form.Controls.Remove(btn2);
-                form.Controls.Remove(btn3);
-                btn2.Dispose(); btn3.Dispose();
-            }
-            CreateView();
-        }
-
         private bool AllShip()
         {
             byte[,] tmp_array = act1.GetNumberANDsize_ship();
@@ -1148,7 +1098,6 @@ namespace BattleShipGame.Data
                 btn1.Click -= new EventHandler(Random_Click);
                 btn2.Click -= new EventHandler(Clear_Click);
                 btn3.Click -= new EventHandler(Start_Click);
-                btn4.Click -= new EventHandler(Back_Click);
                 ClearAllComponents(form);
             }
             act2.AutoGenerateShip();
