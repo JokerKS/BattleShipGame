@@ -771,8 +771,8 @@ namespace BattleShipGame.Data
                 btn5.UseVisualStyleBackColor = btn7.UseVisualStyleBackColor = true;
                 btn1.Cursor = btn2.Cursor = btn3.Cursor = btn4.Cursor = btn5.Cursor = btn6.Cursor = btn7.Cursor = Cursors.Hand;
                 btn1.FlatStyle = btn2.FlatStyle = btn3.FlatStyle = btn4.FlatStyle = btn5.FlatStyle = btn6.FlatStyle = btn7.FlatStyle = FlatStyle.Popup;
-                btn1.Font = btn2.Font = btn3.Font = btn6.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
-                btn1.ForeColor = btn2.ForeColor = btn3.ForeColor = btn6.ForeColor = Color.MediumBlue;
+                btn1.Font = btn2.Font = btn3.Font = btn6.Font = new Font("Georgia", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
+                btn1.ForeColor = btn2.ForeColor = btn3.ForeColor = btn6.ForeColor = Color.FromArgb(62,18,1);
                 btn1.BackColor = btn2.BackColor = btn3.BackColor = btn4.BackColor = btn5.BackColor = btn6.BackColor = btn7.BackColor = SystemColors.Menu;
 
                 tableLayoutPanel1.Controls.Add(panel1, 1, 1);

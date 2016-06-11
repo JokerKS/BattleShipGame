@@ -101,9 +101,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Menu.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -141,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\page3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
