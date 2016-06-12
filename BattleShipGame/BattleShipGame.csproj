@@ -140,10 +140,13 @@
     <None Include="Resources\page3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Menu1.bmp" />
+    <None Include="Resources\bacgground.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Menu.jpg" />
+    <None Include="Resources\Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

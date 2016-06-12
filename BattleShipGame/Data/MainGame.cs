@@ -217,7 +217,9 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-                        tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
+                        tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
+                        tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+                        // tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
                         // 
                         // pictureBox1
                         // 
@@ -349,7 +351,8 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-                        tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
+                        //tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
+                        tableLayoutPanel1.BackgroundImage= Properties.Resources.background;
                         form.Controls.Add(tableLayoutPanel1);
 
                         panel1 = new Panel();
@@ -398,7 +401,7 @@ namespace BattleShipGame.Data
 
                         btn1.Font = label.Font = label2.Font = label3.Font = txt1.Font = txt2.Font = new Font("Century Gothic", 14, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
                         txt1.Width = txt2.Width = 200;
-                        numUpDown.Font = new Font("Century Gothic", 12, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+                        numUpDown.Font = new Font("Georgia", 12, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
                     }
                     label.Location = new Point(20, 10);
                     numUpDown.Location = new Point(label.Location.X + label.Width + 20, label.Location.Y);
@@ -429,11 +432,13 @@ namespace BattleShipGame.Data
                     tableLayoutPanel1.RowCount = 2;
                     tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
                     tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-                    tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
+                    tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
+                    tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+                    //tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
 
                     tableLayoutPanel3 = new TableLayoutPanel();
                     tableLayoutPanel3.Dock = DockStyle.Fill;
-                    tableLayoutPanel3.BackColor = Color.White;
+                    tableLayoutPanel3.BackColor = Color.FromArgb(100, Color.CadetBlue); 
                     tableLayoutPanel3.ColumnCount = 3;
                     tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
@@ -646,18 +651,21 @@ namespace BattleShipGame.Data
                 tableLayoutPanel1 = new TableLayoutPanel();
                 tableLayoutPanel1.ColumnCount = 3;
                 tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 330F));
+                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 630F));
                 tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                 tableLayoutPanel1.Dock = DockStyle.Fill;
                 tableLayoutPanel1.RowCount = 3;
                 tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 360F));
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 450F));
                 tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-                tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
+                tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
+                tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+               // tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
                 // 
                 // panel1
                 // 
                 panel1 = new Panel();
+                panel1.BackColor = Color.Transparent;
                 panel1.Dock = DockStyle.Fill;
                 panel1.Margin = new Padding(0, 0, 0, 0);
                 // 
@@ -665,8 +673,8 @@ namespace BattleShipGame.Data
                 // 
                 pictureBox1 = new PictureBox();
                 pictureBox1.Dock = DockStyle.Fill;
-                pictureBox1.Image = Properties.Resources.Menu;
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox1.BackColor = Color.Transparent;
+                pictureBox1.Paint += new PaintEventHandler(PaintPictureBox);
                 pictureBox1.TabStop = false;
                 panel1.Controls.Add(pictureBox1);
                 //
@@ -674,7 +682,7 @@ namespace BattleShipGame.Data
                 //
                 btn1 = new Button();
                 btn1.Text = "Przeciwko komputerowi";
-                btn1.Location = new Point(30, 90);
+                btn1.Location = new Point(180, 140);
                 btn1.TabIndex = 0;
                 btn1.Click += new EventHandler(NewGame_Click);
                 btn1.Enter += new EventHandler(btn_MouseEnter);
@@ -686,7 +694,7 @@ namespace BattleShipGame.Data
                 //
                 btn2 = new Button();
                 btn2.Text = "Gra dla dwóch osób";
-                btn2.Location = new Point(30, 140);
+                btn2.Location = new Point(180, 190);
                 btn2.TabIndex = 1;
                 btn2.Click += new EventHandler(CompatibleGame_Click);
                 btn2.Enter += new EventHandler(btn_MouseEnter);
@@ -698,7 +706,7 @@ namespace BattleShipGame.Data
                 //
                 btn3 = new Button();
                 btn3.Text = "Zasady gry";
-                btn3.Location = new Point(30, 190);
+                btn3.Location = new Point(180, 240);
                 btn3.TabIndex = 2;
                 btn3.Click += new EventHandler(Zasady_Click);
                 btn3.Enter += new EventHandler(btn_MouseEnter);
@@ -710,8 +718,9 @@ namespace BattleShipGame.Data
                 //
                 btn4 = new Button();
                 btn4.Text = "Zamknij";
-                btn4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                btn4.Location = new Point(30, 290);
+                btn4.Font = new Font("Segoe Script", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                btn4.ForeColor = Color.FromArgb(255, 216, 0);
+                btn4.Location = new Point(180, 340);
                 btn4.TabIndex = 6;
                 btn4.Click += new EventHandler(Close_Click);
                 btn4.Enter += new EventHandler(btn_MouseEnter);
@@ -722,7 +731,7 @@ namespace BattleShipGame.Data
                 // btn5
                 //
                 btn5 = new Button();
-                btn5.Location = new Point(30, 240);
+                btn5.Location = new Point(180, 290);
                 btn5.TabIndex = 3;
                 btn5.BackgroundImage = Properties.Resources.settings;
                 btn5.Enter += new EventHandler(btn_MouseEnter);
@@ -734,7 +743,7 @@ namespace BattleShipGame.Data
                 //
                 btn6 = new Button();
                 btn6.Text = "O programie";
-                btn6.Location = new Point(80, 240);
+                btn6.Location = new Point(230, 290);
                 btn6.Size = new Size(170,45);
                 btn6.TabIndex = 4;
                 btn6.Click += new EventHandler(OProgramie_Click);
@@ -746,7 +755,7 @@ namespace BattleShipGame.Data
                 // btn7
                 //
                 btn7 = new Button();
-                btn7.Location = new Point(255, 240);
+                btn7.Location = new Point(405, 290);
                 btn7.TabIndex = 5;
                 btn7.BackgroundImage = Properties.Resources.volume_max;
                 btn7.Click += new EventHandler(Music_Click);
@@ -759,22 +768,33 @@ namespace BattleShipGame.Data
                 //
                 // Спільне для всіх кнопок
                 //
+                
                 btn1.Size = btn2.Size = btn3.Size = btn4.Size = new Size(270, 45);
                 btn5.Size = btn7.Size = new Size(45, 45);
                 btn5.BackgroundImageLayout = btn7.BackgroundImageLayout = ImageLayout.Stretch;
                 btn5.UseVisualStyleBackColor = btn7.UseVisualStyleBackColor = true;
                 btn1.Cursor = btn2.Cursor = btn3.Cursor = btn4.Cursor = btn5.Cursor = btn6.Cursor = btn7.Cursor = Cursors.Hand;
                 btn1.FlatStyle = btn2.FlatStyle = btn3.FlatStyle = btn4.FlatStyle = btn5.FlatStyle = btn6.FlatStyle = btn7.FlatStyle = FlatStyle.Popup;
-                btn1.Font = btn2.Font = btn3.Font = btn6.Font = new Font("Georgia", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
-                btn1.ForeColor = btn2.ForeColor = btn3.ForeColor = btn6.ForeColor = Color.FromArgb(62,18,1);
+                btn1.Font = btn2.Font = btn3.Font = btn6.Font = new Font("Georgia", 15F, FontStyle.Bold, GraphicsUnit.Point, 204);
+                btn1.ForeColor = btn2.ForeColor = btn3.ForeColor = btn6.ForeColor = Color.FromArgb(255,249 , 151);
                 btn1.BackColor = btn2.BackColor = btn3.BackColor = btn4.BackColor = btn5.BackColor = btn6.BackColor = btn7.BackColor = SystemColors.Menu;
-
+             
+                 btn1.BackColor=btn2.BackColor= btn3.BackColor = btn4.BackColor = btn5.BackColor = btn6.BackColor = btn7.BackColor =Color.FromArgb(100, Color.Brown); 
                 tableLayoutPanel1.Controls.Add(panel1, 1, 1);
 
                 form.Controls.Add(tableLayoutPanel1);
+
+               
             }
             SoundClickReaction();
         }
+
+        private void PaintPictureBox(object sender, EventArgs e)
+        {
+            btm1 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            formGraphics1 = Graphics.FromImage(btm1);
+            formGraphics1.DrawImage(Properties.Resources.Menu, 0, 0);
+            pictureBox1.Image = btm1;        }
 
         private void OProgramie_Click(object sender, EventArgs e)
         {
