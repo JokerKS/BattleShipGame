@@ -219,13 +219,13 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
                         tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
                         tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-                        // tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
                         // 
                         // pictureBox1
                         // 
                         pictureBox1 = new PictureBox();
                         pictureBox1.Name = "pic1";
                         pictureBox1.Dock = DockStyle.Fill;
+                        pictureBox1.BackColor = Color.Transparent;
                         pictureBox1.TabStop = false;
                         pictureBox1.MouseDown += new MouseEventHandler(picBox_MouseDown);
                         pictureBox1.MouseClick += new MouseEventHandler(pictureBox2_MouseClick);
@@ -238,6 +238,7 @@ namespace BattleShipGame.Data
                         pictureBox2 = new PictureBox();
                         pictureBox2.Name = "pic2";
                         pictureBox2.Dock = DockStyle.Fill;
+                        pictureBox2.BackColor = Color.Transparent;
                         pictureBox2.TabStop = false;
                         pictureBox2.MouseClick += new MouseEventHandler(pictureBox2_MouseClick);
                         tableLayoutPanel1.Controls.Add(pictureBox2, 3, 1);
@@ -251,7 +252,7 @@ namespace BattleShipGame.Data
                         numUpDown.Value = 10;
                         numUpDown.ReadOnly = true;
                         numUpDown.Location = new Point(0,30);
-                        numUpDown.Font = new Font("Century Gothic", 16, FontStyle.Bold, GraphicsUnit.Point, 204);
+                        numUpDown.Font = new Font("Georgia", 16, FontStyle.Regular, GraphicsUnit.Point, 204);
                         numUpDown.Anchor = ((AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left));
                         tableLayoutPanel1.Controls.Add(numUpDown, 3, 0);
 
@@ -272,7 +273,7 @@ namespace BattleShipGame.Data
                         label.BackColor = Color.Transparent;
                         label.AutoSize = true;
                         label.Margin = new Padding(0,0,3,8);
-                        label.Font = new Font("Century Gothic", 18, FontStyle.Bold, GraphicsUnit.Point, 204);
+                        label.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, 204);
                         tableLayoutPanel1.Controls.Add(label,1,0);
 
                         flowpanel = new FlowLayoutPanel();
@@ -307,7 +308,7 @@ namespace BattleShipGame.Data
                         btn3.Size = new Size(100, 45);
                         flowpanel.Controls.Add(btn3);
 
-                        btn1.Font = btn2.Font = btn3.Font = btn4.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, 204);
+                        btn1.Font = btn2.Font = btn3.Font = btn4.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, 204);
 
                         form.Controls.Add(tableLayoutPanel1);
                     }
@@ -317,7 +318,7 @@ namespace BattleShipGame.Data
 
                     btm1 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                     formGraphics1 = Graphics.FromImage(btm1);
-                    formGraphics1.Clear(Color.White);
+                    formGraphics1.Clear(Color.Transparent);
                     btm2 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                     formGraphics2 = Graphics.FromImage(btm2);
 
@@ -399,7 +400,7 @@ namespace BattleShipGame.Data
                         btn1.MouseEnter += new EventHandler(btn_MouseEnter);
                         panel1.Controls.Add(btn1);
 
-                        btn1.Font = label.Font = label2.Font = label3.Font = txt1.Font = txt2.Font = new Font("Century Gothic", 14, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+                        btn1.Font = label.Font = label2.Font = label3.Font = txt1.Font = txt2.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                         txt1.Width = txt2.Width = 200;
                         numUpDown.Font = new Font("Georgia", 12, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
                     }
@@ -450,7 +451,7 @@ namespace BattleShipGame.Data
 
                     tableLayoutPanel2 = new TableLayoutPanel();
                     tableLayoutPanel2.Dock = DockStyle.Fill;
-                    tableLayoutPanel2.BackColor = Color.White;
+                    tableLayoutPanel2.BackColor = Color.FromArgb(100, Color.CadetBlue);
                     tableLayoutPanel2.ColumnCount = 3;
                     tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
@@ -462,6 +463,7 @@ namespace BattleShipGame.Data
                     pictureBox1 = new PictureBox();
                     pictureBox1.Dock = DockStyle.Fill;
                     pictureBox1.TabStop = false;
+                    pictureBox1.BackColor = Color.Transparent;
                     if(mode == 2) pictureBox1.MouseClick += new MouseEventHandler(Gamer1_MouseClick);
                     tableLayoutPanel3.Controls.Add(pictureBox1, 0, 1);
                     // 
@@ -469,6 +471,7 @@ namespace BattleShipGame.Data
                     // 
                     pictureBox2 = new PictureBox();
                     pictureBox2.Dock = DockStyle.Fill;
+                    pictureBox2.BackColor = Color.Transparent;
                     pictureBox2.TabStop = false;
                     if (mode == 1)
                         pictureBox2.MouseClick += new MouseEventHandler(pictureBox2_MouseClick);
@@ -484,7 +487,7 @@ namespace BattleShipGame.Data
                     label.TextAlign = ContentAlignment.MiddleCenter;
                     label.AutoSize = true;
                     label.BackColor = Color.White;
-                    label.Font = new Font("Century Gothic", 16F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+                    label.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                     tableLayoutPanel2.Controls.Add(label, 2, 0);
 
                     //
@@ -495,7 +498,7 @@ namespace BattleShipGame.Data
                     label2.TextAlign = ContentAlignment.BottomCenter;
                     label2.AutoSize = true;
                     label2.BackColor = Color.Transparent;
-                    label2.Font = new Font("Century Gothic", 16, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+                    label2.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                     label2.Text = (mode==1)?"Gracz chodzi": act1.Name+" chodzi";
                     tableLayoutPanel3.Controls.Add(label2, 2, 0);
                     //
@@ -506,7 +509,7 @@ namespace BattleShipGame.Data
                     label3.TextAlign = ContentAlignment.BottomCenter;
                     label3.AutoSize = true;
                     label3.BackColor = Color.Transparent;
-                    label3.Font = new Font("Century Gothic", 16, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+                    label3.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                     label3.Text = (mode == 1) ? "Komputer chodzi" : act3.Name + " chodzi";
                     tableLayoutPanel3.Controls.Add(label3, 0, 0);
 
@@ -519,10 +522,10 @@ namespace BattleShipGame.Data
 
                 btm1 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 formGraphics1 = Graphics.FromImage(btm1);
-                formGraphics1.Clear(Color.White);
+                formGraphics1.Clear(Color.Transparent);
                 btm2 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 formGraphics2 = Graphics.FromImage(btm2);
-                formGraphics2.Clear(Color.White);
+                formGraphics2.Clear(Color.Transparent);
 
                 DrawBoard(formGraphics1);
                 DrawBoard(formGraphics2);
@@ -1067,7 +1070,7 @@ namespace BattleShipGame.Data
 
         private void DrawingExampleShip()
         {
-            formGraphics2.Clear(Color.White);
+            formGraphics2.Clear(Color.Transparent);
 
             int max = 0;
             foreach (var item in ex_ship)
@@ -1170,8 +1173,8 @@ namespace BattleShipGame.Data
             Ship tmpShip = FindOptimalCoor(x, y, click);
             if (tmpShip != null)
             {
-                formGraphics1.Clear(Color.White);
-                formGraphics2.Clear(Color.White);
+                formGraphics1.Clear(Color.Transparent);
+                formGraphics2.Clear(Color.Transparent);
 
                 DrawBoard(formGraphics1);
                 act1.DrawAllShip(formGraphics1, size_cell);
@@ -1498,10 +1501,10 @@ namespace BattleShipGame.Data
         #region Малювання 1 частини поля для гри і малювання промахів
         private void DrawBoard(Graphics f)
         {
-            Pen pen = new Pen(Color.Blue, 1F);
+            Pen pen = new Pen(Color.WhiteSmoke, 1F);
             int side_square = size_cell * size_board;
 
-            f.FillRectangle(Brushes.Aquamarine, size_cell * 2, size_cell * 2, side_square, side_square);
+            //f.FillRectangle(Brushes.Transparent, size_cell * 2, size_cell * 2, side_square, side_square);
 
             for (int i = 0, x1 = size_cell * 3, y1 = size_cell * 3;
                 i < size_board - 1; i++, x1 += size_cell, y1 += size_cell)
@@ -1516,10 +1519,10 @@ namespace BattleShipGame.Data
             for (int i = 0; i < size_board; i++, elem++)
             {
                 f.DrawString((i + 1).ToString(),
-                    new Font("Century Gothic", size_cell / 4 * 3, FontStyle.Bold, GraphicsUnit.Point, 204),
+                    new Font("Georgia", size_cell / 4 * 3, FontStyle.Regular, GraphicsUnit.Point, 204),
                     Brushes.Black, (i + 1 < 10 ? size_cell : size_cell / 5 * 4), size_cell * 2 + i * size_cell);
                 f.DrawString(elem.ToString(),
-                    new Font("Century Gothic", size_cell / 4 * 3, FontStyle.Bold, GraphicsUnit.Point, 204),
+                    new Font("Georgia", size_cell / 4 * 3, FontStyle.Regular, GraphicsUnit.Point, 204),
                     Brushes.Black, size_cell * 2 + i * size_cell, size_cell - size_cell / 4);
             }
         }
