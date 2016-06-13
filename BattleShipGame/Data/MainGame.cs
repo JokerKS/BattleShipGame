@@ -1,9 +1,7 @@
 ﻿using BattleShipGame.Date;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Threading;
 using System.Windows.Forms;
 
 
@@ -355,7 +353,6 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-                        //tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
                         tableLayoutPanel1.BackgroundImage= Properties.Resources.background;
                         form.Controls.Add(tableLayoutPanel1);
 
@@ -804,8 +801,8 @@ namespace BattleShipGame.Data
 
         private void OProgramie_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Developers:\n\tJoker_KS(Viktor Kozenko)\n\tSofiiicandy(Sofiia Peretiatko)",
-                        "Versja programy 1.27!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            AboutProgramForm aboutForm = new AboutProgramForm();
+            aboutForm.ShowDialog();
         }
 
         private void Zasady_Click(object sender, EventArgs e)
