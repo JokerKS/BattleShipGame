@@ -435,7 +435,6 @@ namespace BattleShipGame.Data
                     tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
                     tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
                     tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-                    //tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
 
                     tableLayoutPanel3 = new TableLayoutPanel();
                     tableLayoutPanel3.Dock = DockStyle.Fill;
@@ -607,7 +606,7 @@ namespace BattleShipGame.Data
 
         private void TwoGamersGame_Click(object sender, EventArgs e)
         {
-            if (txt1.Text!="" || txt2.Text!="")
+            if (!String.IsNullOrWhiteSpace(txt1.Text) && !String.IsNullOrWhiteSpace(txt2.Text))
             {
                 status_game = GameStatus.Game;
                 act1.AutoGenerateShip();
@@ -621,20 +620,7 @@ namespace BattleShipGame.Data
                     btn1.Click -= new EventHandler(TwoGamersGame_Click);
                     btn1.MouseEnter -= new EventHandler(btn_MouseEnter);
                     btn1.Enter -= new EventHandler(btn_MouseEnter);
-                    panel1.Controls.Remove(btn1);
-                    panel1.Controls.Remove(label);
-                    panel1.Controls.Remove(label2);
-                    panel1.Controls.Remove(label3);
-                    panel1.Controls.Remove(txt1);
-                    panel1.Controls.Remove(txt2);
-                    panel1.Controls.Remove(numUpDown);
-                    btn1.Dispose(); label.Dispose(); label2.Dispose(); label3.Dispose();
-                    txt1.Dispose(); txt2.Dispose(); numUpDown.Dispose();
-                    tableLayoutPanel1.Controls.Remove(panel1);
-                    panel1.Dispose();
-                    tableLayoutPanel1.Paint -= new PaintEventHandler(tableLayoutPanel1_Paint);
-                    form.Controls.Remove(tableLayoutPanel1);
-                    tableLayoutPanel1.Dispose();
+                    ClearAllComponents(form);
                 }
                 CreateView();
             }
@@ -663,7 +649,6 @@ namespace BattleShipGame.Data
                 tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
                 tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
                 tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-               // tableLayoutPanel1.Paint += new PaintEventHandler(tableLayoutPanel1_Paint);
                 // 
                 // panel1
                 // 
@@ -830,7 +815,6 @@ namespace BattleShipGame.Data
                 btn5.Enter -= new EventHandler(btn_MouseEnter);
                 btn6.Enter -= new EventHandler(btn_MouseEnter);
                 btn7.Enter -= new EventHandler(btn_MouseEnter);
-                tableLayoutPanel1.Paint -= new PaintEventHandler(tableLayoutPanel1_Paint);
 
                 ClearAllComponents(form);
             }
@@ -966,15 +950,7 @@ namespace BattleShipGame.Data
             if (musicFlag)
                 player.Play();
         }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            if (e.ClipRectangle!=new Rectangle(0,0,0,0))
-            using (LinearGradientBrush brush = new LinearGradientBrush
-                (e.ClipRectangle, Color.White, Color.Blue, 120F))
-            {
-                e.Graphics.FillRectangle(brush, e.ClipRectangle);
-            }
-        }
+
         private void Music_Click(object sender, EventArgs e)
         {
             musicFlag = !musicFlag;
@@ -1046,7 +1022,6 @@ namespace BattleShipGame.Data
                 btn5.Enter -= new EventHandler(btn_MouseEnter);
                 btn6.Enter -= new EventHandler(btn_MouseEnter);
                 btn7.Enter -= new EventHandler(btn_MouseEnter);
-                tableLayoutPanel1.Paint -= new PaintEventHandler(tableLayoutPanel1_Paint);
 
                 ClearAllComponents(form);
             }
@@ -1501,8 +1476,6 @@ namespace BattleShipGame.Data
         {
             Pen pen = new Pen(Color.WhiteSmoke, 1F);
             int side_square = size_cell * size_board;
-
-            //f.FillRectangle(Brushes.Transparent, size_cell * 2, size_cell * 2, side_square, side_square);
 
             for (int i = 0, x1 = size_cell * 3, y1 = size_cell * 3;
                 i < size_board - 1; i++, x1 += size_cell, y1 += size_cell)
