@@ -285,6 +285,7 @@ namespace BattleShipGame.Data
 
                         btn1 = new Button();
                         btn1.Text = "Wygenerować";
+                        btn1.BackColor = Color.FromArgb(100, Color.CadetBlue);
                         btn1.BringToFront();
                         btn1.Click += new EventHandler(Random_Click);
                         btn1.Cursor = Cursors.Hand;
@@ -293,6 +294,7 @@ namespace BattleShipGame.Data
 
                         btn2 = new Button();
                         btn2.Text = "Wyczyścić";
+                        btn2.BackColor = Color.FromArgb(100, Color.CadetBlue);
                         btn2.BringToFront();
                         btn2.Click += new EventHandler(Clear_Click);
                         btn2.Cursor = Cursors.Hand;
@@ -301,6 +303,7 @@ namespace BattleShipGame.Data
 
                         btn3 = new Button();
                         btn3.Text = "Start";
+                        btn3.BackColor = Color.FromArgb(100, Color.CadetBlue);
                         btn3.BringToFront();
                         btn3.Click += new EventHandler(Start_Click);
                         btn3.Visible = false;
@@ -486,7 +489,7 @@ namespace BattleShipGame.Data
                     label.Dock = DockStyle.Fill;
                     label.TextAlign = ContentAlignment.MiddleCenter;
                     label.AutoSize = true;
-                    label.BackColor = Color.White;
+                    label.BackColor = Color.Transparent;
                     label.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                     tableLayoutPanel2.Controls.Add(label, 2, 0);
 

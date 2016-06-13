@@ -131,15 +131,6 @@
     <None Include="Resources\volume_min.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\page1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\page2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\page3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\bacgground.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +138,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Page.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
