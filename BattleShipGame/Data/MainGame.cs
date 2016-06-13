@@ -284,32 +284,35 @@ namespace BattleShipGame.Data
                         btn1 = new Button();
                         btn1.Text = "Wygenerować";
                         btn1.BackColor = Color.FromArgb(100, Color.CadetBlue);
+                        btn1.AutoSize = true;
+                        btn1.MinimumSize = new Size(btn1.Width,45);
                         btn1.BringToFront();
                         btn1.Click += new EventHandler(Random_Click);
                         btn1.Cursor = Cursors.Hand;
-                        btn1.Size = new Size(165, 45);
                         flowpanel.Controls.Add(btn1);
 
                         btn2 = new Button();
                         btn2.Text = "Wyczyścić";
+                        btn2.AutoSize = true;
+                        btn2.MinimumSize = new Size(btn2.Width, 45);
                         btn2.BackColor = Color.FromArgb(100, Color.CadetBlue);
                         btn2.BringToFront();
                         btn2.Click += new EventHandler(Clear_Click);
                         btn2.Cursor = Cursors.Hand;
-                        btn2.Size = new Size(140, 45);
                         flowpanel.Controls.Add(btn2);
 
                         btn3 = new Button();
                         btn3.Text = "Start";
+                        btn3.AutoSize = true;
+                        btn3.MinimumSize = new Size(btn3.Width, 45);
                         btn3.BackColor = Color.FromArgb(100, Color.CadetBlue);
                         btn3.BringToFront();
                         btn3.Click += new EventHandler(Start_Click);
                         btn3.Visible = false;
                         btn3.Cursor = Cursors.Hand;
-                        btn3.Size = new Size(100, 45);
                         flowpanel.Controls.Add(btn3);
 
-                        btn1.Font = btn2.Font = btn3.Font = btn4.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, 204);
+                        btn1.Font = btn2.Font = btn3.Font = new Font("Georgia", 18, FontStyle.Regular, GraphicsUnit.Point, 204);
 
                         form.Controls.Add(tableLayoutPanel1);
                     }
@@ -941,11 +944,6 @@ namespace BattleShipGame.Data
                 btn3.Enabled = true;
                 btn3.BackgroundImage = Properties.Resources.strelka_right;
             }
-        }
-
-        private void Next_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void btn_MouseEnter(object sender, EventArgs e)
