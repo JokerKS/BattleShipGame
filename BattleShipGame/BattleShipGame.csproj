@@ -146,12 +146,6 @@
     <None Include="Resources\background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Page.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\page1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\page2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -177,9 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\strelkalevo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strelka_left.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\strelka_right.jpg" />
