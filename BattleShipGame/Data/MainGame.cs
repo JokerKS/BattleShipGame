@@ -1,7 +1,6 @@
 ﻿using BattleShipGame.Date;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
@@ -10,7 +9,7 @@ namespace BattleShipGame.Data
     class MainGame
     {
         #region Всі потрібні дані і конструктори
-        //всі елементи, які будуть створені і відображені динамічно
+        //Всі елементи, які будуть створені і відображені динамічно
         MainForm form;
         private TableLayoutPanel tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3;
         private Panel panel1;
@@ -22,6 +21,7 @@ namespace BattleShipGame.Data
         private FlowLayoutPanel flowpanel;
         ToolTip t;
 
+        //Все необхідне для верхнього меню
         private MenuStrip menuStrip1;
         private ToolStripMenuItem mainToolStripMenuItem;
         private ToolStripMenuItem powrótDoMenuToolStripMenuItem;
@@ -32,6 +32,7 @@ namespace BattleShipGame.Data
         private ToolStripMenuItem SoundOffToolStripMenuItem;
         private ToolStripMenuItem SoundOnToolStripMenuItem;
 
+        //Номер сторінки в засадах гри
         private byte page;
 
         //для звуків
@@ -83,14 +84,9 @@ namespace BattleShipGame.Data
         public MainGame(MainForm f)
         {
             form = f;
-            form.MinimumSize = new Size(630, 450);
-            form.Size = form.MinimumSize;
-
-            
-
             who_goes = true;
-
             status_game = GameStatus.Menu;
+
             CreateTopMenu();
             CreateView();
         }
@@ -113,38 +109,27 @@ namespace BattleShipGame.Data
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] {
                 mainToolStripMenuItem, SoundToolStripMenuItem, OProgramieToolStripMenuItem});
-            menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(484, 24);
-            menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // mainToolStripMenuItem
             // 
             mainToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
             powrótDoMenuToolStripMenuItem, toolStripSeparator1, CloseToolStripMenuItem});
-            mainToolStripMenuItem.Size = new Size(46, 20);
             mainToolStripMenuItem.Text = "Main";
             // 
             // powrótDoMenuToolStripMenuItem
             // 
-            powrótDoMenuToolStripMenuItem.Size = new Size(163, 22);
             powrótDoMenuToolStripMenuItem.Text = "Powrót do menu";
             powrótDoMenuToolStripMenuItem.Click += OpenMainMenu_Click;
             // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Size = new Size(160, 6);
-            // 
             // CloseToolStripMenuItem
             // 
-            CloseToolStripMenuItem.Size = new Size(163, 22);
             CloseToolStripMenuItem.Click += Close_Click;
             CloseToolStripMenuItem.Text = "Zamknij";
             // 
             // OProgramieToolStripMenuItem
             //
-            OProgramieToolStripMenuItem.Size = new Size(46, 20);
             OProgramieToolStripMenuItem.Click += OProgramie_Click;
             OProgramieToolStripMenuItem.Text = "O programie";
             // 
@@ -152,18 +137,15 @@ namespace BattleShipGame.Data
             //
             SoundToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
                 SoundOffToolStripMenuItem, SoundOnToolStripMenuItem});
-            SoundToolStripMenuItem.Size = new Size(46, 20);
             SoundToolStripMenuItem.Text = "Dźwięk";
             // 
             // SoundOffToolStripMenuItem
             //
-            SoundOffToolStripMenuItem.Size = new Size(46, 20);
             SoundOffToolStripMenuItem.Text = "Tak";
             SoundOffToolStripMenuItem.Click += Music_Click;
             // 
             // SoundOnToolStripMenuItem
             //
-            SoundOnToolStripMenuItem.Size = new Size(46, 20);
             SoundOnToolStripMenuItem.Text = "Nie";
             SoundOnToolStripMenuItem.Click += Music_Click;
 
@@ -217,6 +199,7 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
                         tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
                         tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+                        MainForm.SetDoubleBuffered(tableLayoutPanel1);
                         // 
                         // pictureBox1
                         // 
@@ -358,6 +341,7 @@ namespace BattleShipGame.Data
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
                         tableLayoutPanel1.BackgroundImage= Properties.Resources.background;
                         form.Controls.Add(tableLayoutPanel1);
+                        MainForm.SetDoubleBuffered(tableLayoutPanel1);
 
                         panel1 = new Panel();
                         panel1.Dock = DockStyle.Fill;
@@ -438,6 +422,7 @@ namespace BattleShipGame.Data
                     tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
                     tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
                     tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+                    MainForm.SetDoubleBuffered(tableLayoutPanel1);
 
                     tableLayoutPanel3 = new TableLayoutPanel();
                     tableLayoutPanel3.Dock = DockStyle.Fill;
@@ -450,6 +435,7 @@ namespace BattleShipGame.Data
                     tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
                     tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
                     tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 0);
+                    MainForm.SetDoubleBuffered(tableLayoutPanel3);
 
                     tableLayoutPanel2 = new TableLayoutPanel();
                     tableLayoutPanel2.Dock = DockStyle.Fill;
@@ -459,6 +445,7 @@ namespace BattleShipGame.Data
                     tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
                     tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
+                    MainForm.SetDoubleBuffered(tableLayoutPanel2);
                     // 
                     // pictureBox1
                     // 
@@ -607,6 +594,7 @@ namespace BattleShipGame.Data
         }
         #endregion
 
+        #region Настройка для гри вдвох за одним ПК
         private void TwoGamersGame_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txt1.Text) && !String.IsNullOrWhiteSpace(txt2.Text))
@@ -630,6 +618,7 @@ namespace BattleShipGame.Data
             else MessageBox.Show("Wprowadź imiona graczy",
                 "Nie wszystkie dane są wypełnione!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+        #endregion
 
         #region Всі функції, що зв'язані зі створенням меню
         private void CreateMenu()
@@ -652,6 +641,7 @@ namespace BattleShipGame.Data
                 tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
                 tableLayoutPanel1.BackgroundImage = Properties.Resources.background;
                 tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
+                MainForm.SetDoubleBuffered(tableLayoutPanel1);
                 // 
                 // panel1
                 // 
@@ -659,6 +649,7 @@ namespace BattleShipGame.Data
                 panel1.BackColor = Color.Transparent;
                 panel1.Dock = DockStyle.Fill;
                 panel1.Margin = new Padding(0, 0, 0, 0);
+                MainForm.SetDoubleBuffered(panel1);
                 // 
                 // pictureBox1
                 // 
@@ -767,10 +758,8 @@ namespace BattleShipGame.Data
                 btn1.Cursor = btn2.Cursor = btn3.Cursor = btn4.Cursor = btn5.Cursor = btn6.Cursor = btn7.Cursor = Cursors.Hand;
                 btn1.FlatStyle = btn2.FlatStyle = btn3.FlatStyle = btn4.FlatStyle = btn5.FlatStyle = btn6.FlatStyle = btn7.FlatStyle = FlatStyle.Popup;
                 btn1.Font = btn2.Font = btn3.Font = btn6.Font = new Font("Georgia", 15F, FontStyle.Bold, GraphicsUnit.Point, 204);
-                btn1.ForeColor = btn2.ForeColor = btn3.ForeColor = btn6.ForeColor = Color.FromArgb(255,249 , 151);
-                btn1.BackColor = btn2.BackColor = btn3.BackColor = btn4.BackColor = btn5.BackColor = btn6.BackColor = btn7.BackColor = SystemColors.Menu;
-             
-                 btn1.BackColor=btn2.BackColor= btn3.BackColor = btn4.BackColor = btn5.BackColor = btn6.BackColor = btn7.BackColor =Color.FromArgb(100, Color.Brown); 
+                btn1.ForeColor = btn2.ForeColor = btn3.ForeColor = btn6.ForeColor = Color.FromArgb(255,249 , 151);             
+                btn1.BackColor=btn2.BackColor= btn3.BackColor = btn4.BackColor = btn5.BackColor = btn6.BackColor = btn7.BackColor =Color.FromArgb(100, Color.Brown); 
                 tableLayoutPanel1.Controls.Add(panel1, 1, 1);
 
                 form.Controls.Add(tableLayoutPanel1);

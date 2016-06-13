@@ -70,21 +70,15 @@
     <Compile Include="Data\Actor.cs" />
     <Compile Include="Data\Computer.cs" />
     <Compile Include="Data\Gamer.cs" />
-    <Compile Include="Data\MainGame.cs" />
-    <Compile Include="Data\Ship.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Data\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Data\MainGame.cs" />
+    <Compile Include="Data\Ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutProgramForm.resx">
       <DependentUpon>AboutProgramForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -164,10 +158,10 @@
     <None Include="Resources\page1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\strelkalevo.jpg" />
+    <None Include="Resources\strelka_right.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\strelka_right.jpg" />
+    <None Include="Resources\strelka_left.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\strelka_left_szara.jpg" />
