@@ -111,16 +111,6 @@ namespace BattleShipGame.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap page11 {
-            get {
-                object obj = ResourceManager.GetObject("page11", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap page2 {
             get {
                 object obj = ResourceManager.GetObject("page2", resourceCulture);
