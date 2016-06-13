@@ -801,8 +801,8 @@ namespace BattleShipGame.Data
 
         private void OProgramie_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Developers:\n\tJoker_KS(Viktor Kozenko)\n\tSofiiicandy(Sofiia Peretiatko)",
-                        "Versja programy 1.27!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            //MessageBox.Show("Developers:\n\tJoker_KS(Viktor Kozenko)\n\tSofiiicandy(Sofiia Peretiatko)",
+            //           "Versja programy 1.27!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void Zasady_Click(object sender, EventArgs e)
