@@ -155,25 +155,19 @@
     <None Include="Resources\settings.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\page3.jpg" />
+    <None Include="Resources\strelka_right.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\strelka_left.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\page2.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\page3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\page1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strelkalevo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strelka_right.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strelka_left_szara.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strelka_right_szara.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
