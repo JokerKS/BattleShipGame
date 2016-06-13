@@ -837,7 +837,7 @@ namespace BattleShipGame.Data
             //baton_nazad
             btn1 = new Button();
             if (page == 0) btn1.Enabled = false;
-            btn1.BackgroundImage = Properties.Resources.strelka_left;
+            btn1.BackgroundImage = Properties.Resources.strelka_left_szara;
             btn1.MaximumSize = new Size(500,40);
             btn1.Anchor = AnchorStyles.Right;
             btn1.Size = new Size(60, 45);
@@ -911,18 +911,20 @@ namespace BattleShipGame.Data
             if (page == 1)
             {
                 pictureBox1.Image = Properties.Resources.page2;
+                btn1.Enabled = true;
+                btn1.BackgroundImage = Properties.Resources.strelka_left;
             }
             else if (page == 2)
             {
                 pictureBox1.Image = Properties.Resources.page3;
                 btn3.Enabled = false;
+                btn3.BackgroundImage = Properties.Resources.strelka_right_szara;
             }
-            if (page != 0) btn1.Enabled = true;
         }
 
         private void Nazad_Click(object sender, EventArgs e)
         {
-            if (page != 0)
+            if (page > 0)
             {
                 page--;
             }
@@ -931,13 +933,14 @@ namespace BattleShipGame.Data
             {
                 pictureBox1.Image = Properties.Resources.page1;
                 btn1.Enabled = false;
+                btn1.BackgroundImage = Properties.Resources.strelka_left_szara;
             }
             else  if (page == 1)
             {
                 pictureBox1.Image = Properties.Resources.page2;
+                btn3.Enabled = true;
+                btn3.BackgroundImage = Properties.Resources.strelka_right;
             }
-
-            if(page!=2) btn3.Enabled = true;
         }
 
         private void Next_Click(object sender, EventArgs e)

@@ -146,9 +146,6 @@
     <None Include="Resources\background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Page.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\page1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +180,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\strelka_right.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\strelka_left_szara.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\strelka_right_szara.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
