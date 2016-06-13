@@ -830,9 +830,9 @@ namespace BattleShipGame.Data
             btn1 = new Button();
             if (page == 0) btn1.Enabled = false;
             btn1.BackgroundImage = Properties.Resources.strelka_left_szara;
-            btn1.MaximumSize = new Size(500,40);
+            btn1.MaximumSize = new Size(500,55);
             btn1.Anchor = AnchorStyles.Right;
-            btn1.Size = new Size(60, 45);
+            btn1.Size = new Size(69, 50);
             btn1.TabIndex = 0;
             btn1.Click += new EventHandler(Nazad_Click);
             tableLayoutPanel2.Controls.Add(btn1, 0, 0);
@@ -845,7 +845,7 @@ namespace BattleShipGame.Data
             btn2.BackgroundImage = Properties.Resources.settings;
             btn2.Anchor = AnchorStyles.None;
 
-            btn2.Size = new Size(50, 50);
+            btn2.Size = new Size(55, 55);
             btn2.TabIndex = 1;
             btn2.Click += new EventHandler(Back2_Click);
             tableLayoutPanel2.Controls.Add(btn2, 1, 0);
@@ -855,9 +855,9 @@ namespace BattleShipGame.Data
             //
             btn3 = new Button();
             btn3.BackgroundImage = Properties.Resources.strelka_right;
-            btn3.MaximumSize = new Size(500, 40);
+            btn3.MaximumSize = new Size(500, 55);
             btn3.Anchor = AnchorStyles.Left;
-            btn3.Size = new Size(60, 45);
+            btn3.Size = new Size(69, 50);
             btn3.TabIndex = 2;
             btn3.Click += new EventHandler(Vpered_Click);
             tableLayoutPanel2.Controls.Add(btn3, 2, 0);
