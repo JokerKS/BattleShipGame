@@ -837,7 +837,8 @@ namespace BattleShipGame.Data
             //baton_nazad
             btn1 = new Button();
             if (page == 0) btn1.Enabled = false;
-            btn1.BackgroundImage = Properties.Resources.settings;
+            btn1.BackgroundImage = Properties.Resources.strelka_left;
+            btn1.MaximumSize = new Size(500,40);
             btn1.Anchor = AnchorStyles.Right;
             btn1.Size = new Size(60, 45);
             btn1.TabIndex = 0;
@@ -861,7 +862,8 @@ namespace BattleShipGame.Data
             //baton_wpered 
             //
             btn3 = new Button();
-            btn3.BackgroundImage = Properties.Resources.settings;
+            btn3.BackgroundImage = Properties.Resources.strelka_right;
+            btn3.MaximumSize = new Size(500, 40);
             btn3.Anchor = AnchorStyles.Left;
             btn3.Size = new Size(60, 45);
             btn3.TabIndex = 2;
