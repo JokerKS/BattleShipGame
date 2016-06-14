@@ -1083,7 +1083,11 @@ namespace BattleShipGame.Data
                 if (max < item.Size) max = item.Size;
             }
 
-            Font f = new Font("Times New Roman", size_cell / 4 * 3);
+            Font f = new Font("Georgia", size_cell / 4 * 3);
+            Font f2 = new Font("Georgia", size_cell / 5 * 3, FontStyle.Italic);
+            formGraphics2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            formGraphics2.DrawString("Aby wziąć statek naciśnij LPM", f2, Brushes.Black, 0, size_cell);
+            formGraphics2.DrawString("Aby rozwinąć statek naciśnij PPM", f2, Brushes.Black, 0, size_cell*2);
             int coorY = size_cell * 4 - 4;
             byte[,] tmp_array = act1.GetNumberANDsize_ship();
             for (int i = 0; i < tmp_array.GetLength(0); i++, coorY += size_cell * 2)
@@ -1462,6 +1466,7 @@ namespace BattleShipGame.Data
         #region Малювання 1 частини поля для гри і малювання промахів
         private void DrawBoard(Graphics f)
         {
+            f.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             Pen pen = new Pen(Color.WhiteSmoke, 1F);
             int side_square = size_cell * size_board;
 
@@ -1479,7 +1484,7 @@ namespace BattleShipGame.Data
             {
                 f.DrawString((i + 1).ToString(),
                     new Font("Georgia", size_cell / 4 * 3, FontStyle.Regular, GraphicsUnit.Point, 204),
-                    Brushes.Black, (i + 1 < 10 ? size_cell : size_cell / 5 * 4), size_cell * 2 + i * size_cell);
+                    Brushes.Black, (i + 1 < 10 ? size_cell : size_cell / 5 * 3), size_cell * 2 + i * size_cell);
                 f.DrawString(elem.ToString(),
                     new Font("Georgia", size_cell / 4 * 3, FontStyle.Regular, GraphicsUnit.Point, 204),
                     Brushes.Black, size_cell * 2 + i * size_cell, size_cell - size_cell / 4);
