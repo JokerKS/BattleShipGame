@@ -149,19 +149,16 @@
     <None Include="Resources\settings.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\page3.jpg" />
+    <None Include="Resources\strelka_right.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\page2.jpg" />
+    <None Include="Resources\strelka_left.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\page1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\strelka_right.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\strelka_left.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\strelka_left_szara.jpg" />

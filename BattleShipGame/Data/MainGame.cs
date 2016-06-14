@@ -31,6 +31,7 @@ namespace BattleShipGame.Data
         private ToolStripMenuItem SoundToolStripMenuItem;
         private ToolStripMenuItem SoundOffToolStripMenuItem;
         private ToolStripMenuItem SoundOnToolStripMenuItem;
+        private ToolStripMenuItem ZasadyToolStripMenuItem;
 
         //Номер сторінки в засадах гри
         private byte page;
@@ -104,11 +105,12 @@ namespace BattleShipGame.Data
             SoundToolStripMenuItem = new ToolStripMenuItem();
             SoundOffToolStripMenuItem = new ToolStripMenuItem();
             SoundOnToolStripMenuItem = new ToolStripMenuItem();
+            ZasadyToolStripMenuItem = new ToolStripMenuItem();
             // 
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] {
-                mainToolStripMenuItem, SoundToolStripMenuItem, OProgramieToolStripMenuItem});
+                mainToolStripMenuItem, SoundToolStripMenuItem, ZasadyToolStripMenuItem, OProgramieToolStripMenuItem});
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Text = "menuStrip1";
             // 
@@ -148,6 +150,11 @@ namespace BattleShipGame.Data
             //
             SoundOnToolStripMenuItem.Text = "Nie";
             SoundOnToolStripMenuItem.Click += Music_Click;
+            // 
+            // ZasadyToolStripMenuItem
+            //
+            ZasadyToolStripMenuItem.Text = "Zasady gry";
+            ZasadyToolStripMenuItem.Click += Zasady_Click;
 
             form.Controls.Add(menuStrip1);
         }
@@ -463,8 +470,12 @@ namespace BattleShipGame.Data
                     pictureBox2.TabStop = false;
                     if (mode == 1)
                         pictureBox2.MouseClick += new MouseEventHandler(pictureBox2_MouseClick);
-                    else if(mode == 2)
-                        pictureBox2.MouseClick += new MouseEventHandler(Gamer_MouseClick);
+                    else if (mode == 2)
+                    {
+                        if (who_goes)
+                            pictureBox2.MouseClick += new MouseEventHandler(Gamer_MouseClick);
+                        else pictureBox1.MouseClick += new MouseEventHandler(Gamer_MouseClick);
+                    }
                     tableLayoutPanel3.Controls.Add(pictureBox2, 2, 1);
                     //
                     // label
@@ -781,7 +792,7 @@ namespace BattleShipGame.Data
         private void Zasady_Click(object sender, EventArgs e)
         {
             page = 0;
-            if (form.Controls.Contains(tableLayoutPanel1))
+            if(status_game==GameStatus.Menu)
             {
                 btn1.Click -= new EventHandler(NewGame_Click);
                 btn2.Click -= new EventHandler(CompatibleGame_Click);
@@ -803,9 +814,43 @@ namespace BattleShipGame.Data
                 btn5.Enter -= new EventHandler(btn_MouseEnter);
                 btn6.Enter -= new EventHandler(btn_MouseEnter);
                 btn7.Enter -= new EventHandler(btn_MouseEnter);
-
-                ClearAllComponents(form);
             }
+            else if(status_game == GameStatus.Preparation)
+            {
+                if (mode==1)
+                {
+                    form.SizeChanged -= MainForm_SizeChanged;
+                    pictureBox1.MouseDown -= picBox_MouseDown;
+                    pictureBox1.MouseClick -= pictureBox2_MouseClick;
+                    pictureBox1.MouseMove -= picBox_MouseMove;
+                    pictureBox2.MouseClick -= pictureBox2_MouseClick;
+                    numUpDown.ValueChanged -= numUpDown_ValueChanged;
+                    btn1.Click -= Random_Click;
+                    btn2.Click -= Clear_Click;
+                    btn3.Click -= Start_Click;
+                }
+                else if(mode==2)
+                {
+                    numUpDown.ValueChanged -= numUpDown_ValueChanged;
+                    btn1.Click -= TwoGamersGame_Click;
+                    btn1.Enter -= btn_MouseEnter;
+                    btn1.MouseEnter -= btn_MouseEnter;
+                }
+            }
+            else if(status_game == GameStatus.Game)
+            {
+                form.SizeChanged -= MainForm_SizeChanged;
+                if (mode == 1)
+                {
+                    pictureBox2.MouseClick -= pictureBox2_MouseClick;
+                }
+                else if (mode == 2)
+                {
+                    pictureBox1.MouseClick -= Gamer_MouseClick;
+                    pictureBox2.MouseClick -= Gamer_MouseClick;
+                }
+            }
+            ClearAllComponents(form);
 
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel1.Dock = DockStyle.Fill;
