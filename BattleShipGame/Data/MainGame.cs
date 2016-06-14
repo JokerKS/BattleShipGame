@@ -453,7 +453,6 @@ namespace BattleShipGame.Data
                     pictureBox1.Dock = DockStyle.Fill;
                     pictureBox1.TabStop = false;
                     pictureBox1.BackColor = Color.Transparent;
-                    if(mode == 2) pictureBox1.MouseClick += new MouseEventHandler(Gamer1_MouseClick);
                     tableLayoutPanel3.Controls.Add(pictureBox1, 0, 1);
                     // 
                     // pictureBox2
@@ -465,7 +464,7 @@ namespace BattleShipGame.Data
                     if (mode == 1)
                         pictureBox2.MouseClick += new MouseEventHandler(pictureBox2_MouseClick);
                     else if(mode == 2)
-                        pictureBox2.MouseClick += new MouseEventHandler(Gamer2_MouseClick);
+                        pictureBox2.MouseClick += new MouseEventHandler(Gamer_MouseClick);
                     tableLayoutPanel3.Controls.Add(pictureBox2, 2, 1);
                     //
                     // label
@@ -750,7 +749,6 @@ namespace BattleShipGame.Data
                 //
                 // Спільне для всіх кнопок
                 //
-                
                 btn1.Size = btn2.Size = btn3.Size = btn4.Size = new Size(270, 45);
                 btn5.Size = btn7.Size = new Size(45, 45);
                 btn5.BackgroundImageLayout = btn7.BackgroundImageLayout = ImageLayout.Stretch;
@@ -763,8 +761,6 @@ namespace BattleShipGame.Data
                 tableLayoutPanel1.Controls.Add(panel1, 1, 1);
 
                 form.Controls.Add(tableLayoutPanel1);
-
-               
             }
             SoundClickReaction();
         }
@@ -1096,14 +1092,10 @@ namespace BattleShipGame.Data
 
         private void picBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && Ship.FindActiveShip(ex_ship)!=-1)
             {
-                int index_active = Ship.FindActiveShip(ex_ship);
-                if (index_active != -1)
-                {
-                    type_active_ship = !type_active_ship;
-                    tmpx = -1; tmpy = -1;
-                }
+                type_active_ship = !type_active_ship;
+                tmpx = -1; tmpy = -1;
             }
         }
 
@@ -1132,7 +1124,6 @@ namespace BattleShipGame.Data
 
         private void RedrawBattlefield(int x, int y, bool click = false)
         {
-
             Ship tmpShip = FindOptimalCoor(x, y, click);
             if (tmpShip != null)
             {
@@ -1369,7 +1360,7 @@ namespace BattleShipGame.Data
         #endregion
 
         #region Ходи двох гравців
-        private void Gamer1_MouseClick(object sender, MouseEventArgs e)
+        private void Gamer_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -1377,82 +1368,44 @@ namespace BattleShipGame.Data
                 ConvertCoordinateToCells(e.X, e.Y, out x, out y);
                 if (x >= 0 && y >= 0)
                 {
-                    if (status_game == GameStatus.Game && !who_goes)
+                    int course = (!who_goes ? act1.Course(x, y) : act3.Course(x, y));
+                    if (course == 2)
                     {
-                        int course = act1.Course(x, y);
-                        if (course == 2)
+                        if (who_goes)
                         {
-                            who_goes = !who_goes;
-                            if (!who_goes)
-                            {
-                                label3.Visible = true;
-                                label2.Visible = false;
-                            }
-                            else
-                            {
-                                label2.Visible = true;
-                                label3.Visible = false;
-                            }
-                            act3.Result_OF_Shot(x, y, course);
-                            DrawMiss(formGraphics1, x, y, true);
-                            pictureBox1.Image = btm1;
-                        }
-                        else if (course == -1 || course == -2)
-                        {
-                            act3.Result_OF_Shot(x, y, course);
-                            CreateView();
-                        }
-                        if (course == -2 && act1.AllKilled())
-                        {
-                            status_game = GameStatus.Finish;
-                            CreateView();
-                        }
-                    }
-                }
-            }
-        }
-        private void Gamer2_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                int x, y;
-                ConvertCoordinateToCells(e.X, e.Y, out x, out y);
-                if (x >= 0 && y >= 0)
-                {
-                    if (status_game == GameStatus.Game && who_goes)
-                    {
-                        int course = act3.Course(x, y);
-                        if (course == 2)
-                        {
-                            who_goes = !who_goes;
-                            if (!who_goes)
-                            {
-                                label3.Visible = true;
-                                label2.Visible = false;
-                            }
-                            else
-                            {
-                                label2.Visible = true;
-                                label3.Visible = false;
-                            }
+                            pictureBox1.MouseClick += new MouseEventHandler(Gamer_MouseClick);
+                            pictureBox2.MouseClick -= new MouseEventHandler(Gamer_MouseClick);
+                            label3.Visible = true;
+                            label2.Visible = false;
                             act1.Result_OF_Shot(x, y, course);
                             DrawMiss(formGraphics2, x, y, true);
                             pictureBox2.Image = btm2;
                             number_of_moves++;
                             label.Text = "Ilość ruchów: " + number_of_moves;
                         }
-                        else if (course == -1 || course == -2)
+                        else
                         {
-                            act1.Result_OF_Shot(x, y, course);
-                            CreateView();
+                            pictureBox1.MouseClick -= new MouseEventHandler(Gamer_MouseClick);
+                            pictureBox2.MouseClick += new MouseEventHandler(Gamer_MouseClick);
+                            label2.Visible = true;
+                            label3.Visible = false;
+                            act3.Result_OF_Shot(x, y, course);
+                            DrawMiss(formGraphics1, x, y, true);
+                            pictureBox1.Image = btm1;
                         }
-                        if (course == -2 && act3.AllKilled())
-                        {
-                            number_of_moves++;
-                            label.Text = "Ilość ruchów: " + number_of_moves;
-                            status_game = GameStatus.Finish;
-                            CreateView();
-                        }
+                        who_goes = !who_goes;
+                    }
+                    else if (course == -1 || course == -2)
+                    {
+                        if (!who_goes)
+                            act3.Result_OF_Shot(x, y, course);
+                        else act1.Result_OF_Shot(x, y, course);
+                        CreateView();
+                    }
+                    if (course == -2 && act1.AllKilled())
+                    {
+                        status_game = GameStatus.Finish;
+                        CreateView();
                     }
                 }
             }
