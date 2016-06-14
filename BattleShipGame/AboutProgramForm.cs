@@ -17,6 +17,7 @@ namespace BattleShipGame
         public AboutProgramForm()
         {
             InitializeComponent();
+            Icon = Properties.Resources.JKSicon;
             button1.AutoSize = true;
         }
 

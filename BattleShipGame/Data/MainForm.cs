@@ -15,6 +15,7 @@ namespace BattleShipGame.Data
             MinimumSize = new Size(630, 450);
             StartPosition = FormStartPosition.CenterScreen;
             DoubleBuffered = true;
+            Icon = Properties.Resources.JKSicon;
 
             MainGame gra = new MainGame(this);
         }
@@ -35,6 +36,19 @@ namespace BattleShipGame.Data
                 cp.ExStyle |= 0x02000000;
                 return cp;
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // MainForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "MainForm";
+            this.Text = "BattleShip Game";
+            this.ResumeLayout(false);
+
         }
     }
 }
